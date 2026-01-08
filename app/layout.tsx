@@ -1,12 +1,11 @@
-// src/app/layout.tsx
 'use client';
 
 import '@rainbow-me/rainbowkit/styles.css';
 import './globals.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { WagmiProvider } from 'wagmi';
-import { RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
-import { config } from '../config';
+import { RainbowKitProvider, darkTheme, ConnectButton } from '@rainbow-me/rainbowkit'; // 👈 注意：这里引入了 ConnectButton
+import { config } from '../config'; // 如果你的 config.ts 在根目录，这里可能需要改成 '@/config' 或者 '../config'
 
 const queryClient = new QueryClient();
 
@@ -20,7 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               theme={darkTheme({
                 accentColor: '#F0B90B', // 币安金
                 accentColorForeground: 'black',
-                borderRadius: 'none', // 机构感，不要圆角
+                borderRadius: 'none',
               })}
             >
               <div className="min-h-screen flex flex-col">
@@ -31,12 +30,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       <div className="w-8 h-8 bg-[#F0B90B] skew-x-[-12deg]"></div>
                       <span className="font-bold text-xl tracking-tighter">VENTURE CAP</span>
                     </div>
-                    {/* 连接钱包按钮 - 自动适配移动端 */}
-                    <w3m-button /> 
-                    {/* 这里使用 RainbowKit 的 ConnectButton */}
+                    
+                    {/* 连接钱包按钮 - 修正部分 */}
                     <div className="scale-90 origin-right">
-                        <import { ConnectButton } from '@rainbow-me/rainbowkit'; />
-                         {/* 注意：实际代码中请直接使用 ConnectButton 组件，为了演示方便简写 */}
+                        <ConnectButton /> 
                     </div>
                   </div>
                 </header>
